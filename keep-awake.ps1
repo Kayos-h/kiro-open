@@ -26,9 +26,10 @@ public static class Awake {
 }
 '@
 
-$ES_CONTINUOUS       = [uint32]0x80000000
-$ES_SYSTEM_REQUIRED  = [uint32]0x00000001
-$ES_DISPLAY_REQUIRED = [uint32]0x00000002
+# Written as unsigned so they parse on Windows PowerShell 5.1 (0x80000000 would overflow Int32).
+$ES_CONTINUOUS       = [uint32]2147483648   # 0x80000000
+$ES_SYSTEM_REQUIRED  = [uint32]1            # 0x00000001
+$ES_DISPLAY_REQUIRED = [uint32]2            # 0x00000002
 
 function Set-StayAwake {
     $flags = $ES_CONTINUOUS -bor $ES_SYSTEM_REQUIRED
